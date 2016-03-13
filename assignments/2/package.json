@@ -1,0 +1,53 @@
+{
+  "name": "assignment-2",
+  "version": "1.0.0",
+  "description": "An automation template for HTML, CSS, Sass, and JavaScript used by the Web Advanced Using JavaScript course at Parsons School of Design.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-warrior/web-advanced-using-javascript.git"
+  },
+  "keywords": [
+    "gulp",
+    "automation",
+    "template",
+    "html",
+    "css",
+    "sass",
+    "javascript",
+    "web-advanced",
+    "javascript",
+    "parsons"
+  ],
+  "author": "Roy Vanegas",
+  "license": "ISC",
+  "contributors": [
+    {
+      "name": "Roy Vanegas",
+      "email": "roy@thecodeeducators.com",
+      "url": "http://roy.vanegas.org"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/code-warrior/web-advanced-using-javascript/issues"
+  },
+  "homepage": "https://github.com/code-warrior/web-advanced-using-javascript#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.1",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cache": "^0.4.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-csso": "^1.0.1",
+    "gulp-eslint": "^1.1.1",
+    "gulp-html": "^0.4.4",
+    "gulp-htmlmin": "^1.3.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-sass": "^2.1.1",
+    "gulp-uglify": "^1.5.1"
+  }
+}

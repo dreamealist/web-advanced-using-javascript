@@ -4,7 +4,7 @@ This repository contains the assignments for the course Web Advanced (using Java
 
 **Assignment 1**: [`assignments/1/`](assignments/1/)
 
-**Assignment 2**: Pending
+**Assignment 2**: [`assignments/2/`](assignments/2/)
 
 **Assignment 3**: Pending
 
