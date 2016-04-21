@@ -41,7 +41,43 @@ var gulp                           = require('gulp'),
     JSDevTargetFolder        = devTargetFolder  + '/' + JSFolder,
     JSProdTargetFolder       = prodTargetFolder + '/' + JSFolder,
     cssDevDestinationFolder  = devTargetFolder  + '/' + sassCSSFolder + '/',
-    cssProdDestinationFolder = prodTargetFolder + '/' + sassCSSFolder + '/';
+    cssProdDestinationFolder = prodTargetFolder + '/' + sassCSSFolder + '/',
+    browserPref              = 'default';
+
+/**
+ * CHOOSE A BROWSER OTHER THAN THE DEFAULT
+ *
+ * The following four tasks set the browser preference variable (browserPref) in
+ * the browserSync preferences read by the serve task. To use either of the four
+ * browsers when serving this project, invoke Gulp as follows:
+ *
+ *    gulp safari serve
+ *    gulp firefox serve
+ *    gulp chrome serve
+ *    gulp opera serve
+ *
+ * Testing in Windows and Linux is pending.
+ */
+
+// Works in Mac OS X 10.11
+gulp.task('safari', function () {
+    browserPref = 'safari';
+});
+
+// Unknown
+gulp.task('firefox', function () {
+    browserPref = 'firefox';
+});
+
+// Doesn’t work in Mac OS X 10.11
+gulp.task('chrome', function () {
+    browserPref = 'chrome';
+});
+
+// Works in Mac OS X 10.11
+gulp.task('opera', function () {
+    browserPref = 'opera';
+});
 
 /**
  * VALIDATE HTML
@@ -67,7 +103,7 @@ gulp.task('validateHTML', function () {
  * This task compresses all the HTML files in the HTMLFiles array, then writes the
  * compressed files to the prodTargetFolder.
  */
-gulp.task('compressHTML', function() {
+gulp.task('compressHTML', function () {
     return gulp.src(HTMLFiles)
         .pipe(HTMLMinifier({
             removeComments: true,
@@ -218,11 +254,14 @@ gulp.task('compressThenCopyImagesToProdFolder', function () {
  */
 gulp.task('copyUnprocessedAssetsToProdFolder', function () {
     return gulp.src([
-        devSourceFolder + '/*.*',                           // Source all files,
-        devSourceFolder + '/**',                            // and all folders, but
-        '!' + devSourceFolder + '/' + imagesFolder,         // ignore images;
-        '!' + devSourceFolder + '/**/*.js',                 // ignore JS;
-        '!' + devSourceFolder + '/' + sassCSSFolder + '/**' // ignore Sass/CSS.
+        devSourceFolder + '/*.*',                              // Source all files,
+        devSourceFolder + '/**',                               // and all folders,but
+        '!' + devSourceFolder + '/' + imagesFolder,            // ignore images;
+        '!' + devSourceFolder + '/**/*.js',                    // ignore JS;
+        '!' + devSourceFolder + '/' + sassCSSFolder + '/**',   // ignore Sass/CSS.
+        '!' + devSourceFolder + '/' + HTMLSourceFolder + '/**' // ignore HTML files
+                                                               // that have already
+                                                               // been processed.
     ], {dot: true}).pipe(gulp.dest(prodTargetFolder));
 });
 
@@ -288,7 +327,8 @@ gulp.task('serve',
                     devTargetFolder,
                     devSourceFolder + '/' + HTMLSourceFolder
                 ]
-            }
+            },
+            browser: browserPref //Adding browser Preference option to browserSync
         });
 
         gulp.watch(devSourceFolder + '/' + JSFolder + '/*.js',
