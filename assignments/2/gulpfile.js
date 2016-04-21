@@ -44,25 +44,39 @@ var gulp                           = require('gulp'),
     cssProdDestinationFolder = prodTargetFolder + '/' + sassCSSFolder + '/',
     browserPref              = 'default';
 
-
 /**
- * CHOOSE THE BROWSER PREFERENCE
- * This is an easy hack into letting the gulp know which browser to 
- * serve on through command line. By default, with inserting the command 
- * '$ gulp serve' gulp attempts to serve the development server and will 
- * open 'localhost:9000' in system's default browser. 
- * In case you are interested to promptly open the site in an specific 
- * browser, these task will let you do so. you can signal your desired preference
- * with this command 'gulp serve safari' or 'gulp serve chrome'
+ * CHOOSE A BROWSER OTHER THAN THE DEFAULT
+ *
+ * The following four tasks set the browser preference variable (browserPref) in
+ * the browserSync preferences read by the serve task. To use either of the four
+ * browsers when serving this project, invoke Gulp as follows:
+ *
+ *    gulp safari serve
+ *    gulp firefox serve
+ *    gulp chrome serve
+ *    gulp opera serve
+ *
+ * Testing in Windows and Linux is pending.
  */
+
+// Works in Mac OS X 10.11
 gulp.task('safari', function () {
     browserPref = 'safari';
 });
- gulp.task('firefox', function () {
+
+// Unknown
+gulp.task('firefox', function () {
     browserPref = 'firefox';
 });
+
+// Doesn’t work in Mac OS X 10.11
 gulp.task('chrome', function () {
     browserPref = 'chrome';
+});
+
+// Works in Mac OS X 10.11
+gulp.task('opera', function () {
+    browserPref = 'opera';
 });
 
 /**
@@ -89,7 +103,7 @@ gulp.task('validateHTML', function () {
  * This task compresses all the HTML files in the HTMLFiles array, then writes the
  * compressed files to the prodTargetFolder.
  */
-gulp.task('compressHTML', function() {
+gulp.task('compressHTML', function () {
     return gulp.src(HTMLFiles)
         .pipe(HTMLMinifier({
             removeComments: true,
@@ -240,12 +254,14 @@ gulp.task('compressThenCopyImagesToProdFolder', function () {
  */
 gulp.task('copyUnprocessedAssetsToProdFolder', function () {
     return gulp.src([
-        devSourceFolder + '/*.*',                           // Source all files,
-        devSourceFolder + '/**',                            // and all folders, but
-        '!' + devSourceFolder + '/' + imagesFolder,         // ignore images;
-        '!' + devSourceFolder + '/**/*.js',                 // ignore JS;
-        '!' + devSourceFolder + '/' + sassCSSFolder + '/**', // ignore Sass/CSS.
-        '!' + devSourceFolder + '/' + HTMLSourceFolder + '/**' // ignore HTML SOURCES since have ALREADY BEEN PROCESSED
+        devSourceFolder + '/*.*',                              // Source all files,
+        devSourceFolder + '/**',                               // and all folders,but
+        '!' + devSourceFolder + '/' + imagesFolder,            // ignore images;
+        '!' + devSourceFolder + '/**/*.js',                    // ignore JS;
+        '!' + devSourceFolder + '/' + sassCSSFolder + '/**',   // ignore Sass/CSS.
+        '!' + devSourceFolder + '/' + HTMLSourceFolder + '/**' // ignore HTML files
+                                                               // that have already
+                                                               // been processed.
     ], {dot: true}).pipe(gulp.dest(prodTargetFolder));
 });
 
