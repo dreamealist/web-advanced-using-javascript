@@ -1,0 +1,378 @@
+$veggieburger-width: 40px;
+$veggieburger-window-edge-offset: 30px;
+$veggieburger-border-thickness: 2px;
+$veggieburger-border-distance: 650%;
+$screen-height: 100vh;
+$screen-width: 100vw;
+
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
+
+
+#menu-trigger--container {
+  position: fixed;
+  top: 30px;
+  left: 20px;
+  z-index: 100;
+
+  #menu-trigger {
+    outline: none;
+    display: block;
+    position: absolute;
+    top: $veggieburger-window-edge-offset;
+    left: $veggieburger-window-edge-offset;
+    width: $veggieburger-width;
+    height: $veggieburger-width;
+
+    span {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: $veggieburger-border-thickness;
+      background-color: black;
+      font-size: 0;
+      transition: background-color, 0.3s;
+
+      &:before,
+      &:after {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        content: '';
+      }
+
+      &:before {
+        -webkit-transform: translateY(-#{$veggieburger-border-distance});
+                transform: translateY(-#{$veggieburger-border-distance});
+      }
+
+      &:after {
+        -webkit-transform: translateY($veggieburger-border-distance);
+                transform: translateY($veggieburger-border-distance);
+      }
+    }
+
+    
+  }
+
+
+  #menu-trigger:hover {
+    span{
+
+        &:before {
+            -webkit-transform: translateY(0) rotate(-90deg);
+                    transform: translateY(0) rotate(-90deg);
+            -webkit-transition: all 500ms ease;
+                    transition: all 500ms ease;
+        }
+        &:after {
+            -webkit-transform: translateY($veggieburger-border-distance - 650%);
+                    transform: translateY($veggieburger-border-distance - 650%);
+            -webkit-transition: all 500ms ease;
+                    transition: all 500ms ease;
+
+        }
+
+      }
+  }
+
+  &[data-open] {
+
+    #menu-trigger {
+      span {
+        background-color: transparent;
+
+        &:before,
+        &:after {
+          background: white;
+        }
+
+        &:before {
+          -webkit-transform: translateY(0) rotate(45deg);
+                  transform: translateY(0) rotate(45deg);
+          -webkit-transition: all 500ms ease;
+                  transition: all 500ms ease;
+        }
+
+        &:after {
+          -webkit-transform: translateY(0) rotate(-45deg);
+                  transform: translateY(0) rotate(-45deg);
+          -webkit-transition: all 500ms ease;
+                  transition: all 500ms ease;
+        }
+      }
+    }
+  }
+}
+
+#menu{
+  position: relative;
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  top: -100vh;
+  z-index: 100;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+#menu li{
+  color: white;
+  position: relative;
+  margin:{
+    left: 30vw;
+    right: 30vw;
+  }
+  top: 11vh;
+  font:{
+    family: 'Source Code Pro';
+    size: 1.5em;
+    weight: 100;
+  }
+  line-height: 8vh;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3vw;
+
+}
+
+
+#menu li:hover{
+  -webkit-transform: rotateX(180deg);
+  cursor: pointer;
+  
+}
+
+#menu li a{
+  text-decoration: none;
+  color: white;
+}
+
+#bg{
+  top: 0;
+  z-index:-1;
+  overflow:hidden;
+  width:100vw;
+  height:100vh;
+  position:fixed;
+
+}
+
+
+#container{
+  position: absolute;
+  top:0;
+  margin:5vw;
+  width: 100vw;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#container img{
+  padding: 2vw;
+}
+
+
+button {
+  width: 20vw;
+  height:8vh;
+  background-color:black;
+  z-index: 2;
+  border: none;
+  top: 0;
+  margin:{
+    top: 60vh;
+    left: 60vw;
+    right:20vw;
+  }
+  position: absolute;
+  outline: none;
+}
+
+#data{
+  font-family: "Norwester";
+  font-size: 1.5em;
+  letter-spacing: 0.5vw;
+  color:white;
+
+}
+
+#data:hover {
+  cursor: pointer;
+  -webkit-transform: rotateX(180deg);
+}
+
+#intro p{
+  font-family: 'Source Code Pro';
+  color: black;
+  font-size: 1em;
+  width: 42vw;
+  height: 10vh;
+  top: 0;
+  margin:{
+    top:43vh;
+    left: 30vw;
+    right: 30vw;
+  }
+  text-align: left;
+  position: absolute;
+  z-index: 2;
+  line-height: 4vh;
+  letter-spacing: 1px;
+
+}
+
+
+
+
+#about{
+  width:100%;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  margin-top: 100vh;
+}
+
+#artworks{
+  display: none;
+  width: 100%;
+  height: 350vh;
+  background-color: white;
+  position: absolute;
+  z-index:10;
+}
+
+#artworks div{
+  background-color: white;
+}
+
+#artworks ul{
+  float: left;
+  color: black;
+  margin:{ 
+    left: 6vw;
+    top: 29vh;
+  }
+  line-height: 6vh;
+  font-family: 'Source Code Pro';
+  font-weight: 400;
+  font-size: 0.8em;
+  z-index:11;
+  position: fixed;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#artworks ul li {
+  text-decoration: none;
+  color: black;
+  border-bottom: 1px solid transparent; 
+  width: 0px ;
+  white-space: nowrap;
+  transition: all 500ms ease-in;
+}
+
+#artworks ul li:hover{
+  font-weight: 800;
+  color: black;
+  cursor: pointer;
+}
+
+
+
+
+#flight, #waves, #datadata, #urban, #track, #spigot, #listening{
+  width:100%;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+}
+
+
+
+
+h2{
+  font:{
+    family:'Source Code Pro';
+    size: 1.2em;
+    weight: 400;
+  }
+  margin:{
+    left: 25vw;
+    right: 25vw;
+    top: 2vh;
+  }
+  text-align: center;
+}
+
+p{
+  font:{
+    family:'Source Code Pro';
+    size: 1em;
+    weight: 300;
+  } 
+  line-height: 4vh;
+  color: black;
+  text-align: left;
+  width: 55vw;
+  margin:{
+    left: 25vw;
+    right: 25vw;
+    top: 2vh;
+  }
+}
+
+h1{
+  text-align: center;
+  font:{
+    family:'Source Code Pro';
+    size: 2em;
+    weight: 300;
+  }
+  text-transform: uppercase;
+  color: black;
+  margin:{
+    left: 25vw;
+    right: 25vw;
+    top: 12vh;
+  }
+}
+
+#artworks img{
+  position: relative;
+  margin:{
+    left: 25vw;
+    right: 25vw;
+    top: 8vh;
+  }
+  width: 55vw;
+}
+
+#artworks iframe{
+  position: relative;
+  margin:{
+    left: 25vw;
+    right: 25vw;
+    top: 8vh;
+  }
+  width: 55vw;
+  height: 55vh;
+}
+
+
+
+
+
