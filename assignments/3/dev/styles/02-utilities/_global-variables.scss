@@ -1,0 +1,20 @@
+// Change this variable to adjust the overall width of both the menu and the body.
+$width-nav: 300px;
+
+$width-nav-item: ( $width-nav / 2 );
+
+$width-border: 2px;
+
+// This variable defines the uniform height of each nav item.
+$height-nav-item: 34px;
+
+$color-nav-links: #fff;
+$color-code-sample-link: #7d4793;
+$color-border: #21bde1;
+$color-foreground: #555;
+$color-background-nav: #f0ab3b;
+
+// The following variable is used in the anchor styled on line 62 of main.scss.
+// Increase the 0 to uniformly change the height of each inner nav item.
+//
+// $height-inner-list-items: ( $height-nav-item + 0 );
